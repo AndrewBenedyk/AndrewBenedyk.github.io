@@ -1,23 +1,37 @@
 <!DOCTYPE html>
-<html>
+<html lang="uk">
 <head>
-    <title>Telegram Login</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>F1 Leaderboard</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            padding: 20px;
+            /* Використовуємо кольори з теми Telegram */
+            color: var(--tg-theme-text-color);
+            background: var(--tg-theme-bg-color);
+        }
+        h1 {
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-    <h1>Login with Telegram</h1>
-    <p>Click the button below to log in.</p>
+    <h1>Привіт, це ваш перший Web App! 🏆</h1>
+    <p>Ця сторінка завантажена всередині Telegram.</p>
+    <p id="user-info"></p>
 
-    <script async src="https://telegram.org/js/telegram-widget.js?22"
-            data-telegram-login="web_app_test10_bot"
-            data-size="large"
-            data-onauth="onTelegramAuth(user)"
-            data-request-access="write"></script>
+    <script>
+        // Ініціалізуємо API
+        const tg = window.Telegram.WebApp;
+        tg.ready();
 
-    <script type="text/javascript">
-        function onTelegramAuth(user) {
-            // This function runs after a successful login
-            alert('Login Successful!\nHello, ' + user.first_name + ' ' + user.last_name + '!');
-            console.log(user);
+        // Показуємо ім'я користувача, якщо воно є
+        const userInfoElement = document.getElementById('user-info');
+        if (tg.initDataUnsafe && tg.initDataUnsafe.user) {
+            userInfoElement.innerText = `Ми знаємо, що вас звати ${tg.initDataUnsafe.user.first_name}!`;
         }
     </script>
 </body>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Telegram Login</title>
+</head>
+<body>
+    <h1>Login with Telegram</h1>
+    <p>Click the button below to log in.</p>
+
+    <script async src="https://telegram.org/js/telegram-widget.js?22"
+            data-telegram-login="web_app_test10_bot"
+            data-size="large"
+            data-onauth="onTelegramAuth(user)"
+            data-request-access="write"></script>
+
+    <script type="text/javascript">
+        function onTelegramAuth(user) {
+            // This function runs after a successful login
+            alert('Login Successful!\nHello, ' + user.first_name + ' ' + user.last_name + '!');
+            console.log(user);
+        }
+    </script>
+</body>
+</html>
